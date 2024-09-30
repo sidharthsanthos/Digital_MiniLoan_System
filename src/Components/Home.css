@@ -1,0 +1,20 @@
+/* Make sure the body and html take up the full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Ensure the main container stretches to fill available space */
+  .main-container {
+    min-height: 100vh; /* Ensure the container is at least the height of the viewport */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Add this class to allow scrolling if content exceeds viewport */
+  .content {
+    flex: 1; /* Allows this section to grow and shrink, filling the available space */
+    overflow: auto; /* Allows scrolling if content overflows */
+  }
+  

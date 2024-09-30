@@ -1,0 +1,12 @@
+.section {
+    padding: 100px 20px;
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  /* You can use the same section-specific styles or add custom styles for each section */
+  

@@ -1,0 +1,61 @@
+/* Bank.css */
+
+.bank-form {
+    max-width: 500px;  
+    margin: 20px auto;
+    padding: 10px 15px;  
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.bank-form label {
+    display: block;
+    margin-bottom: 5px;  /* Reduced margin below labels */
+    font-weight: bold;
+    color: #333;
+}
+
+.bank-form input[type="text"],
+.bank-form input[type="date"],
+.bank-form input[type="email"] {
+    width: 100%;
+    padding: 6px 8px;  /* Reduced padding to make inputs shorter */
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bank-form button {
+    width: 100%;
+    padding: 8px;  /* Reduced button height */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.bank-form button:hover {
+    background-color: #0056b3;
+}
+
+.bank-form h1{
+    text-align: center;
+}
+
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

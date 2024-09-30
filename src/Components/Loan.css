@@ -1,0 +1,64 @@
+.loan-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.loan-table th, .loan-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.loan-table th {
+    background-color: #f4f4f4;
+    text-align: left;
+}
+
+.loan-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.loan-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+.loan-table button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.loan-table button:hover {
+    background-color: #0056b3;
+}
+
+.loan-table .disabled-button {
+    background-color: grey;
+    color: white;
+    cursor: not-allowed;
+}
+
+.pending-font {
+    color: green;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.approved-font {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.username-style{
+    text-transform: uppercase;
+}

@@ -1,0 +1,66 @@
+/* General container styling */
+.login-container {
+    width: 100%;
+    max-width: 400px; /* Adjust the width as needed */
+    margin: 50px auto; /* Center the container and add margin from top */
+    padding: 20px; /* Add padding inside the container */
+    border: 1px solid #ddd; /* Light border around the container */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    background-color: #fff; /* White background */
+}
+
+/* Style for form elements */
+.login-container h1 {
+    text-align: center; /* Center the heading text */
+    margin-bottom: 20px; /* Space below the heading */
+}
+
+.login-container label {
+    margin-bottom: 5px; /* Space below each label */
+    font-weight: bold; /* Bold labels */
+}
+
+.login-container input {
+    width: calc(100% - 20px); /* Full width with padding consideration */
+    padding: 10px; /* Padding inside the input */
+    margin-bottom: 15px; /* Space below each input */
+    border: 1px solid #ccc; /* Border for the input */
+    border-radius: 4px; /* Rounded corners for inputs */
+    font-size: 16px; /* Font size for inputs */
+}
+
+.login-container button {
+    width: 100%; /* Full width button */
+    padding: 10px; /* Padding inside the button */
+    background-color: #007bff; /* Button color */
+    color: white; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners for button */
+    font-size: 16px; /* Font size for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.login-container button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}
+
+.login-container a {
+    display: block; /* Block display for full-width */
+    text-align: center; /* Center align the text */
+    margin-top: 20px; /* Space above the link */
+    text-decoration: none; /* Remove underline */
+    color: #007bff; /* Link color */
+    font-weight: bold; /* Bold text */
+}
+
+.login-container a:hover {
+    text-decoration: underline; /* Underline on hover */
+    color: #0056b3; /* Darker color on hover */
+}
+
+.login-container p {
+    text-align: center; /* Center align the text */
+    color: #555; /* Dark grey color */
+}
