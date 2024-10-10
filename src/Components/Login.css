@@ -1,4 +1,8 @@
 /* General container styling */
+/* .main-container{
+    overflow: hidden;
+} */
+
 .login-container {
     width: 100%;
     max-width: 400px; /* Adjust the width as needed */

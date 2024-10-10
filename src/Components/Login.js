@@ -32,6 +32,8 @@ class Login extends React.Component{
                      redirectToIndex: true,
                      user_id:response.data.user_id
                 });
+                const fuid=response.data.user_id;
+                localStorage.setItem('user_id',fuid);
             }
             else{
                 alert('failed');
@@ -44,7 +46,7 @@ class Login extends React.Component{
             return <Navigate to="/index" state={{user_id:this.state.user_id}}/>;
         }
         return(
-            <div>
+            <div className='main-container'>
             <div className="login-container">
                 <h1>LOGIN PAGE</h1>
                 <form>

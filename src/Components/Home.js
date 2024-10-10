@@ -13,9 +13,16 @@ import Link_acct from './Link_acct';
 import Loan from './Loan';
 import Bank_interface from './Bank_interface';
 import Acct_verify from './Acct_verify';
+import Loan_ui from './Loan_ui';
+import { ToastContainer, toast,Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for the toasts
+import './Home.css';
+
+
 
 function Home() {
   return (
+    <div>
     <Router>
       <Routes>
         {/* Routes for main application layout with Navbar and Footer */}
@@ -31,17 +38,31 @@ function Home() {
         <Route path="/index" element={<Index2/>}/>
         <Route path="/logout" element={<Login/>}/>
         <Route path="/link_bank" element={<Link_acct/>}/>
-        <Route path="/loan_request" element={<Loan/>}/>
+        <Route path="/loan_request" element={<Loan_ui/>}/>
         <Route path="/bank_interface" element={<Bank_interface/>}/>
         <Route path="/acct_verify" element={<Acct_verify/>}/>
       </Routes>
     </Router>
+    <ToastContainer
+    position="top-right"
+    autoClose={5000}
+    hideProgressBar
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable
+    pauseOnHover
+    theme="light"
+    transition= {Bounce}
+/>
+    </div>
   );
 }
 
 function MainLayout() {
   return (
-    <div>
+    <div className='main-container'>
       <Navbar />
       <div className="content">
         <Outlet /> {/* This will render the child route components */}
