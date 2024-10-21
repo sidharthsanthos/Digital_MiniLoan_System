@@ -16,6 +16,7 @@ $state= $data->state;
 $district= $data->district;
 $address= $data->address;
 $uid= $data->uid;
+$credit_score=700;
 
 // Database connection
 $conn = mysqli_connect("localhost", "root", "", "digital_miniloan");
@@ -32,7 +33,7 @@ if(mysqli_num_rows($res)>0){
 }
 else{
 // Prepare SQL query
-$sql = "INSERT INTO bank (name, gender, phone_number,email,date_of_birth,nationality,state,district,address,uid_number) VALUES ('$name', '$gender', $phno,'$email','$dob','$nation','$state','$district','$address','$uid')";
+$sql = "INSERT INTO bank (name, gender, phone_number,email,date_of_birth,nationality,state,district,address,uid_number,credit_score) VALUES ('$name', '$gender', $phno,'$email','$dob','$nation','$state','$district','$address','$uid',$credit_score)";
 
 // Execute the query
 try {

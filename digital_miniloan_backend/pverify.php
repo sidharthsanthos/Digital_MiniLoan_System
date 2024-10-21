@@ -39,7 +39,7 @@ if(mysqli_num_rows($res)>0){
             $mail->SMTPSecure = 'tls';  // for encrypted connection                           
             $mail->Port = 587;   // port for SMTP     
 
-            $mail->setFrom('sidharthsanthosh121@gmail.com', "Sender"); // sender's email and name
+            $mail->setFrom('sidharthsanthosh121@gmail.com', "Digital Miniloan"); // sender's email and name
             $mail->addAddress($email,"Receiver");
 
             $mail->Subject="Your OTP for Linking Bank Account to Mini Loan Application";

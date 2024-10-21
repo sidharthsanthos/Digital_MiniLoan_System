@@ -64,7 +64,7 @@ if ($method === 'POST') {
 }
 } elseif ($method === 'GET') {
     // Handle GET request (Retrieve data)
-    $sql = "SELECT * FROM loan l,authentication a where l.user_id=a.user_id order by l.req_id";
+    $sql = "SELECT * FROM loan l,authentication a,bank b where l.user_id=a.user_id and b.user_id=a.user_id and b.user_id=l.user_id /*and l.status='pending'*/ order by l.status desc";
     $result = mysqli_query($conn, $sql);
 
     $loans = array();
