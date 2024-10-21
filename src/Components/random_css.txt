@@ -1,0 +1,57 @@
+
+Modal overlay styles
+.modal {
+    position: fixed; /* Position fixed to overlay the entire screen */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    right: 0; /* Align to the right of the viewport */
+    bottom: 0; /* Align to the bottom of the viewport */
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex; /* Flexbox to center the modal */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    z-index: 1000; /* High z-index to ensure it is on top of other elements */
+}
+
+/* Modal content styles */
+.modal > div {
+    background: white; /* White background for modal content */
+    padding: 20px; /* Padding inside the modal */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+    max-width: 500px; /* Maximum width of the modal */
+    width: 100%; /* Full width on smaller screens */
+}
+
+.modal-title {
+    margin: 0;
+    font-size: 24px;
+    text-align: center;
+    color: #333;
+}
+
+.modal-content {
+    margin: 20px 0;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #555;
+}
+
+
+
+.close-icon {
+    background: none; /* Remove background */
+    border: none; /* Remove border */
+    font-size: 24px; /* Size of the close icon */
+    color: #ff5733; /* Close icon color */
+    cursor: pointer; /* Pointer cursor on hover */
+    float: right; /* Align to the right */
+    margin-bottom: 10px; /* Space between close icon and title */
+}
+
+.close-icon:hover {
+    color: #c70039; /* Change color on hover */
+}

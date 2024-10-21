@@ -16,6 +16,7 @@ import Acct_verify from './Acct_verify';
 import Loan_ui from './Loan_ui';
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for the toasts
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Home.css';
 
 

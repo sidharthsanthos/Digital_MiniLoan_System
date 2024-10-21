@@ -3,6 +3,7 @@
     overflow: hidden;
 } */
 
+
 .login-container {
     width: 100%;
     max-width: 400px; /* Adjust the width as needed */
@@ -68,3 +69,17 @@
     text-align: center; /* Center align the text */
     color: #555; /* Dark grey color */
 }
+
+.loading-overlay {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Align text in the center */
+  }
+  
+  .spinner {
+    margin-top: 10px; /* Add spacing between h1 and spinner */
+  }
+  

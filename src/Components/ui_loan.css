@@ -1,0 +1,17 @@
+.loan-container {
+    height: 100%; /* Full height of the viewport */
+    padding: 1rem; /* Optional padding */
+    overflow-y: auto; /* Allow vertical scrolling if necessary */
+    display: flex; /* Use Flexbox */
+    flex-direction: column; /* Align items vertically */
+}
+
+/* Optional styles for the Loan content */
+.loan-content {
+    flex: 1; /* Allow the content to grow and take up available space */
+    overflow: auto; /* Enable scrolling if the content exceeds the height */
+}
+
+.cccc{
+    overflow: hidden;
+}

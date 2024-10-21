@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Sidebar1 from "./Sidebar1";
 import Navbar from "./Navbar";
+import {Spinner,Modal} from 'react-bootstrap';
 
 class Loan extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class Loan extends React.Component {
             amount: "",
             loans: [],
             selectedLoan: null,
-            isModalOpen:false
+            isModalOpen:false,
+            loading:false
         };
     }
 
@@ -76,6 +78,7 @@ class Loan extends React.Component {
             alert("You cannot send yourself");
         }
         else if(window.confirm("Click OK to Continue")){
+            this.setState({loading:true});
             var data={
                 user_id:this.state.user_id,
                 r_uid:r_uid,
@@ -94,6 +97,8 @@ class Loan extends React.Component {
                     toast.error("You Dont Have Enough Balance");
                     this.fetchLoans();
                 }
+            }).finally(()=>{
+                this.setState({loading:false})
             })
         }
         else{
@@ -122,11 +127,23 @@ class Loan extends React.Component {
         })
     }
 
+    handleCloseModal = () => {
+        this.setState({ isModalOpen: false, selectedLoan: null });
+    }
+
     render() {
-        const { loans,isModalOpen,selectedLoan } = this.state;
+        const { loans,isModalOpen,selectedLoan,loading } = this.state;
 
         return (
             <div>
+                        {loading && (
+                        <div className="loading-overlay">
+                            <h1>Loading</h1><br/>
+                            <Spinner animation="border" role="status" variant="primary">
+                            <span className="sr-only"></span>
+                            </Spinner>
+                        </div>
+                        )}
                         <p>{this.state.user_id}</p>
                         <h1>LOAN REQUEST</h1>
                         <form onSubmit={this.req}>
@@ -165,19 +182,31 @@ class Loan extends React.Component {
                                 ))}
                             </tbody>
                         </table>
-                        {isModalOpen && selectedLoan &&(
-                            <div className="modal"  onClick={() => this.setState({ isModalOpen: false })}>
-                            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                                <button className="close-icon" onClick={() => this.setState({ isModalOpen: false })}>×</button>
-                                <h2 className="modal-title">Borrower Details</h2>
-                                <p><strong>User ID:</strong> {selectedLoan.user_id}</p>
-                                <p><strong>Username:</strong> {selectedLoan.username}</p>
-                                <p><strong>Amount:</strong> {selectedLoan.Amount}</p>
-                                <p><strong>Interest Rate:</strong> {selectedLoan.intrest_rate}%</p>
-                                <p><strong>Credit Score:</strong> <span className={parseInt(selectedLoan.credit_score)>=700?"fair":"unfair"}> <strong> {selectedLoan.credit_score} </strong></span></p>
-                            </div>
-                        </div>                
-                        )}
+                        <Modal
+                        show={isModalOpen}
+                        onHide={this.handleCloseModal}
+                        centered
+                        backdrop="true" // Prevent closing by clicking outside
+                        keyboard={true}    // Prevent closing with the Esc key
+                        dialogClassName="custom-modal" // Custom class for styling
+                        >
+                            <Modal.Header closeButton>
+                                <Modal.Title>Borrower Details</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                {selectedLoan ? (
+                                    <>
+                                        <p><strong>User ID:</strong> {selectedLoan.user_id}</p>
+                                        <p><strong>Username:</strong> {selectedLoan.username}</p>
+                                        <p><strong>Amount:</strong> {selectedLoan.Amount}</p>
+                                        <p><strong>Interest Rate:</strong> {selectedLoan.intrest_rate}%</p>
+                                        <p><strong>Credit Score:</strong> <span className={parseInt(selectedLoan.credit_score) >= 700 ? "text-success" : "text-danger"}><strong>{selectedLoan.credit_score}</strong></span></p>
+                                    </>
+                                ) : (
+                                    <p>No details available.</p>
+                                )}
+                            </Modal.Body>
+                        </Modal>
 
                         </div>
                         
