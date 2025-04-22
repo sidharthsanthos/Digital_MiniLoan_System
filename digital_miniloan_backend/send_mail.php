@@ -18,7 +18,7 @@ function debit($uid,$amt,$balance,$email){
             $mail->SMTPSecure = 'tls';  // for encrypted connection                           
             $mail->Port = 587;   // port for SMTP     
 
-            $mail->setFrom('sidharthsanthosh121@gmail.com', "Sender"); // sender's email and name
+            $mail->setFrom('sidharthsanthosh121@gmail.com', "DIGITAL MINILOAN"); // sender's email and name
             $mail->addAddress($email,"Receiver");
 
             $mail->Subject="ACCOUNT DEBIT ALERT";
@@ -31,7 +31,7 @@ function debit($uid,$amt,$balance,$email){
 }
 
 function credit($uid,$amt,$balance,$email){
-    $message="Dear Customer, Your Account having account number $uid has been debited with amount:$amt. Your Final Balance is $balance";
+    $message="Dear Customer, Your Account having account number $uid has been credited with amount:$amt. Your Final Balance is $balance";
             
             $mail = new PHPMailer(true);                              
         try {
@@ -43,7 +43,7 @@ function credit($uid,$amt,$balance,$email){
             $mail->SMTPSecure = 'tls';  // for encrypted connection                           
             $mail->Port = 587;   // port for SMTP     
 
-            $mail->setFrom('sidharthsanthosh121@gmail.com', "Sender"); // sender's email and name
+            $mail->setFrom('sidharthsanthosh121@gmail.com', "DIGITAL MINILOAN"); // sender's email and name
             $mail->addAddress($email,"Receiver");
 
             $mail->Subject="ACCOUNT DEBIT ALERT";

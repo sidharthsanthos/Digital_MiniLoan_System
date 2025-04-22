@@ -19,8 +19,9 @@ if(mysqli_num_rows($res)>0){
 
     if($fetched_otp==$otp){
         $sql1="update bank set user_id=$uid where acct_no=$acct";
+        $sql2="update authentication set acct_no=$acct where user_id=$uid";
         try{
-            if(mysqli_query($conn,$sql1)){
+            if(mysqli_query($conn,$sql1)&&mysqli_query($conn,$sql2)){
                 echo json_encode(array("status"=>"success"));
             }
         }catch(Exception $e){

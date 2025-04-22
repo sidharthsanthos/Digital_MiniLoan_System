@@ -1,6 +1,7 @@
 <?php
 include 'heade.php';
 include 'conn.php';
+include 'loan_setting.php';
 
 // Enable error reporting for debugging
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
@@ -8,6 +9,8 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 $method = $_SERVER['REQUEST_METHOD'];
+$system_intrest=System_intrest_rate;
+$cs=minimum_credit_score;
 
 if ($method === 'POST') {
     // Handle POST request (Insert data)
@@ -17,7 +20,7 @@ if ($method === 'POST') {
     $uid = $data->uid;
     $amt = $data->amount;
     $status = "pending";
-    $intrest=10;
+    $intrest=$system_intrest;
 
     $sql1="select credit_score from bank where user_id=$uid";
     $res=mysqli_query($conn,$sql1);
@@ -31,7 +34,7 @@ if ($method === 'POST') {
     if($amt >2500){
         echo json_encode(array("status"=>"limit exceeded"));
     }
-    else if($credit<700){
+    else if($credit<$cs){
         echo json_encode(array("status"=>"credit_issue"));
     }
     else{
@@ -64,7 +67,7 @@ if ($method === 'POST') {
 }
 } elseif ($method === 'GET') {
     // Handle GET request (Retrieve data)
-    $sql = "SELECT * FROM loan l,authentication a,bank b where l.user_id=a.user_id and b.user_id=a.user_id and b.user_id=l.user_id /*and l.status='pending'*/ order by l.status desc";
+    $sql = "SELECT * FROM loan l,authentication a,bank b where l.user_id=a.user_id and b.user_id=a.user_id and b.user_id=l.user_id and l.status='pending' order by l.status desc";
     $result = mysqli_query($conn, $sql);
 
     $loans = array();

@@ -16,9 +16,10 @@ if(mysqli_num_rows($res)>0){
     $retrieved_user=$row['username'];
     $retrieved_pass=$row['password'];
     $id=$row['user_id'];
+    $ut=$row['user_type'];
 
     if($retrieved_user==$uname && $retrieved_pass==$pass){
-        echo json_encode(array("status"=>"success","user_id"=>$id));
+        echo json_encode(array("status"=>"success","user_id"=>$id,"user_type"=>$ut));
     }
     else{
         echo "failed";
