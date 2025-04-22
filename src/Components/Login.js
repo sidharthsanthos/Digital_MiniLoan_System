@@ -13,7 +13,8 @@ class Login extends React.Component{
             pass:"",
             redirectToIndex: false,
             user_id:"",
-            loading:false
+            loading:false,
+            user_type:""
         }
     }
 
@@ -33,13 +34,14 @@ class Login extends React.Component{
                 alert("Success");
                 this.setState({
                      redirectToIndex: true,
-                     user_id:response.data.user_id
+                     user_id:response.data.user_id,
+                     user_type:response.data.user_type
                 });
                 const fuid=response.data.user_id;
                 localStorage.setItem('user_id',fuid);
             }
             else{
-                alert('failed');
+                alert('Please ensure the Username and Password entered are correct and try again');
             }
         }).catch(error=>{
             if(error.message==="Network Error"){
@@ -54,9 +56,16 @@ class Login extends React.Component{
 
     render(){
         const {loading}=this.state;
-        if(this.state.redirectToIndex){
-            return <Navigate to="/index" state={{user_id:this.state.user_id}}/>;
+        if(this.state.user_type=="user"){
+            if(this.state.redirectToIndex){
+                return <Navigate to="/index" state={{user_id:this.state.user_id}}/>;
+            }    
+        }else if(this.state.user_type=="admin"){
+            if(this.state.redirectToIndex){
+                return <Navigate to="/aindex" state={{user_id:this.state.user_id}}/>;
+            }
         }
+        
         return(
             <div className='main-container'>
                 {
@@ -77,7 +86,7 @@ class Login extends React.Component{
                     <label>Username</label>
                     <input type="text" name="username" onChange={this.inputSet}/><br/>
                     <label>Password</label>
-                    <input type="text" name="pass" onChange={this.inputSet}/><br/>
+                    <input type="password" name="pass" onChange={this.inputSet}/><br/>
                     <button onClick={this.login}>Login</button> 
                 </form>
                 <Link to="/Signup">

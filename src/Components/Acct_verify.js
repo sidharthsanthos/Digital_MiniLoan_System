@@ -1,6 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { Spinner } from "react-bootstrap";
+import './linacc.css';
 
 class Acct_verify extends React.Component{
     constructor(props){
@@ -9,7 +11,8 @@ class Acct_verify extends React.Component{
             user_id:null,
             email:null,
             otp:"",
-            is_verified:false
+            is_verified:false,
+            loading:false
         }
     }
 
@@ -25,6 +28,7 @@ class Acct_verify extends React.Component{
 
     checkOTP=(e)=>{
         e.preventDefault();
+        this.setState({loading:true});
         var data={
             user_id:this.state.user_id,
             email:this.state.email,
@@ -42,6 +46,8 @@ class Acct_verify extends React.Component{
                 const mess=respone.data.status;
                 alert(mess);
             }
+        }).finally(()=>{
+            this.setState({loading:false});
         });
     }
 
@@ -51,11 +57,26 @@ class Acct_verify extends React.Component{
                 <Navigate to="/bank_interface" />
             )
         }
+        const {loading}=this.state;
         return(
+            <div>
+                {
+                    loading&&(
+                        <div className="loading-overlay">
+                            <h1>Loading</h1><br/>
+                            <div className="spiner">
+                            <Spinner animation="border" role="status" variant="success">
+                                <span className="sr-only"></span>
+                            </Spinner>
+                            </div>
+                        </div>
+                    )
+                }
             <div>
                 <label>Enter OTP</label>
                 <input type="number" name="otp" onChange={this.inputSet}/>
                 <button onClick={this.checkOTP}>Submit</button>
+            </div>
             </div>
         )
     }

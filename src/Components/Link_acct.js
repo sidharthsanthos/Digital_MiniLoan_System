@@ -2,6 +2,7 @@ import axios from "axios";
 import React from "react";
 import { useLocation, Link, Navigate } from 'react-router-dom';
 import './linacc.css';
+import { Spinner } from "react-bootstrap";
 
 class Link_acct extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class Link_acct extends React.Component {
             phno: "",
             is_user:true,
             acct_exist:false,
+            loading:false
         };
     }
 
@@ -33,6 +35,7 @@ class Link_acct extends React.Component {
         e.preventDefault();
         console.log("User ID before request:", this.state.user_id); // Debugging line
         console.log("Phone Number:", this.state.phno); // Debugging line
+        this.setState({loading:true});
 
         var data = {
             phno: this.state.phno,
@@ -64,6 +67,8 @@ class Link_acct extends React.Component {
             })
             .catch(error => {
                 console.error("There was an error verifying the account!", error);
+            }).finally(()=>{
+                this.setState({loading:false});
             });
     }
 
@@ -79,8 +84,21 @@ class Link_acct extends React.Component {
             )
         }
         const { state } = this.props.location;
+        const {loading}=this.state;
         return (
             <div className="container">
+                {
+                    loading&&(
+                        <div className="loading-overlay">
+                            <h1>Loading</h1><br/>
+                            <div className="spiner">
+                            <Spinner animation="border" role="status" variant="success">
+                                <span className="sr-only"></span>
+                            </Spinner>
+                            </div>
+                        </div>
+                    )
+                }
                 <div className="form-container">
                 <form>
                     <label>Phone Number</label><br />

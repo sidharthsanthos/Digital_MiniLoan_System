@@ -1,61 +1,157 @@
-/* Bank.css */
-
-.bank-form {
-    max-width: 500px;  
-    margin: 20px auto;
-    padding: 10px 15px;  
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    background-color: #f9f9f9;
+.bank-registration-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  border: 2px solid #333;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 }
 
-.bank-form label {
-    display: block;
-    margin-bottom: 5px;  /* Reduced margin below labels */
-    font-weight: bold;
-    color: #333;
+h1 {
+  text-align: center;
+  color: #333;
 }
 
-.bank-form input[type="text"],
-.bank-form input[type="date"],
-.bank-form input[type="email"] {
-    width: 100%;
-    padding: 6px 8px;  /* Reduced padding to make inputs shorter */
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
+/* Updated Progress Bar Styles */
 
-.bank-form button {
-    width: 100%;
-    padding: 8px;  /* Reduced button height */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.bank-form button:hover {
-    background-color: #0056b3;
-}
-
-.bank-form h1{
-    text-align: center;
+.progress-bar2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 
-.back-link {
-    display: inline-block;
-    margin-top: 15px;
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
+.progress-step {
+  display: inline-flex; /* Changed to inline-flex */
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  position: relative;
 }
 
-.back-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
+.step-number {
+  flex-shrink: 0; /* Prevent number from shrinking */
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.progress-step.active .step-number {
+  background-color: #007bff;
+}
+
+.step-title {
+  font-size: 12px;
+  margin-left: 8px;
+  white-space: nowrap;
+  text-align: left; /* Changed to left alignment */
+  max-width: none; /* Removed max-width limitation */
+}
+
+.progress-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 10px);
+  width: 20px;
+  height: 2px;
+  background-color: #ccc;
+}
+
+.progress-step.active:not(:last-child)::after {
+  background-color: #007bff;
+}
+
+.progress-step:last-child {
+  margin-right: 0;
+}
+
+/* Optional: Webkit Scrollbar Styling */
+.progress-bar::-webkit-scrollbar {
+  height: 8px;
+}
+
+.progress-bar::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.progress-bar::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 500px) {
+  .step-title {
+    font-size: 10px;
+  }
+}
+
+/* ... rest of your CSS remains unchanged ... */
+
+
+
+.form-container {
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  display: block;
+}
+
+.form-navigation {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
 }

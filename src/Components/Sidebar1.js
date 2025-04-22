@@ -10,7 +10,7 @@ function Sidebar1({setActiveComponent}) {
     const toggleSidebar = () => {
         setIsCollapsed(prev => !prev);
     };
-
+    
     return (
         <div className='cccc'>
         <div className="d-flex flex-column">
@@ -48,6 +48,18 @@ function Sidebar1({setActiveComponent}) {
                         <a className='nav-link px-2'style={{cursor:"pointer"}} onClick={()=>setActiveComponent('LoanRepay')}>
                             <i className='bi bi-calendar' />
                             <span className={`ms-1 ${isCollapsed ? 'd-none' : 'd-inline'}`}>Repayment</span>
+                        </a>
+                    </li>
+                    <li className='nav-item mb-2'>
+                        <a className='nav-link px-2'style={{cursor:"pointer"}} onClick={()=>setActiveComponent('LoanList')}>
+                            <i className='bi bi-list' />
+                            <span className={`ms-1 ${isCollapsed ? 'd-none' : 'd-inline'}`}>My Loans</span>
+                        </a>
+                    </li>
+                    <li className='nav-item mb-2'>
+                        <a className='nav-link px-2'style={{cursor:"pointer"}} onClick={()=>setActiveComponent('InvestmentList')}>
+                            <i className='bi bi-graph-up-arrow' />
+                            <span className={`ms-1 ${isCollapsed ? 'd-none' : 'd-inline'}`}>Investment List</span>
                         </a>
                     </li>
                 </ul>

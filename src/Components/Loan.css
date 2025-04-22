@@ -46,14 +46,21 @@
 }
 
 .pending-font {
-    color: green;
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.repaid-font{
+    color:blue;
     font-weight: bold;
     font-style: italic;
     text-transform: uppercase;
 }
 
 .approved-font {
-    color: red;
+    color: green;
     font-weight: bold;
     font-style: italic;
     text-transform: uppercase;
@@ -115,3 +122,174 @@
     align-items: center;
     z-index: 9999; /* Ensure it covers other elements */
 }
+
+.custom-amount .restrict_click{
+    cursor: not-allowed;
+    color:white;
+    background-color: grey;
+}
+
+button:disabled{
+    background-color: #d3d3d3;
+    color: black;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    width: 250px;
+    padding: 8px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+    margin-right: 5px;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+}
+
+.search-bar input::placeholder {
+    color: #999;
+}
+
+.reward-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .reward-container {
+    position: relative;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    width: 350px;
+    padding: 30px;
+    text-align: center;
+    overflow: hidden;
+    animation: popIn 0.5s ease-out;
+  }
+  
+  @keyframes popIn {
+    0% {
+      transform: scale(0.5);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: transparent;
+    border-width: 5px;
+    border-style: solid;
+    border-radius: 5px;
+    animation: fall 3s linear infinite;
+  }
+  
+  .confetti:nth-child(1) { border-color: gold; }
+  .confetti:nth-child(2) { border-color: purple; }
+  .confetti:nth-child(3) { border-color: pink; }
+  .confetti:nth-child(4) { border-color: green; }
+  .confetti:nth-child(5) { border-color: blue; }
+  
+  @keyframes fall {
+    0% {
+      transform: translateY(-100%) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  .trophy-icon {
+    font-size: 4rem;
+    margin-bottom: 15px;
+  }
+  
+  .reward-title {
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .reward-subtitle {
+    color: #666;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .reward-amount {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .currency {
+    color: #888;
+    margin-right: 5px;
+    font-size: 1.2rem;
+  }
+  
+  .amount {
+    color: #4CAF50;
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .claim-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .claim-button:hover {
+    background-color: #45a049;
+  }

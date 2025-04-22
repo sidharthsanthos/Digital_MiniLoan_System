@@ -20,21 +20,27 @@ class Signup extends React.Component{
 
     register=(e)=>{
         e.preventDefault();
-        var data={
-            uname:this.state.username,
-            phno:this.state.phno,
-            pass:this.state.pass
-        };
-        axios.post("http://localhost/digital_miniloan_backend/user_reg.php",data).then(response=>{
-            if(response.data=="success"){
-                alert("account created successfully");
-            }else if(response.data=="user already exists"){
-                alert("user already exists");
-            }
-            else{
-                alert(response.data);
-            }
-        })
+
+        if(this.state.username!==""&&this.state.phno!==""&&this.state.pass!==""){
+            var data={
+                uname:this.state.username,
+                phno:this.state.phno,
+                pass:this.state.pass
+            };
+            axios.post("http://localhost/digital_miniloan_backend/user_reg.php",data).then(response=>{
+                if(response.data=="success"){
+                    alert("account created successfully");
+                }else if(response.data=="user already exists"){
+                    alert("user already exists");
+                }
+                else{
+                    alert(response.data);
+                }
+            })
+        }else{
+            alert("Please fill in all fields before submitting the form")
+        }
+        
     }
 
     render(){

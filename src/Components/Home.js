@@ -14,6 +14,9 @@ import Loan from './Loan';
 import Bank_interface from './Bank_interface';
 import Acct_verify from './Acct_verify';
 import Loan_ui from './Loan_ui';
+import A_dash from './A_dashboard';
+import Bhome from './Bank_home';
+import Manage_profile from './Manage_profile';
 import { ToastContainer, toast,Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Import the CSS for the toasts
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -42,6 +45,9 @@ function Home() {
         <Route path="/loan_request" element={<Loan_ui/>}/>
         <Route path="/bank_interface" element={<Bank_interface/>}/>
         <Route path="/acct_verify" element={<Acct_verify/>}/>
+        <Route path="/aindex" element={<A_dash/>}/>
+        <Route path="/bhome" element={<Bhome/>}/>
+        <Route path="/profile_interface" element={<Manage_profile/>}/>
       </Routes>
     </Router>
     <ToastContainer

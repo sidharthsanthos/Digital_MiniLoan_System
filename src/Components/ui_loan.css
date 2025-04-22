@@ -15,3 +15,66 @@
 .cccc{
     overflow: hidden;
 }
+
+.sort-container {
+    width: 200px;
+    margin-bottom: 15px;
+}
+
+.sort-container select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>') no-repeat right 8px center;
+    background-size: 24px;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: border-color 0.2s ease;
+}
+
+.sort-container select:focus {
+    outline: none;
+    border-color: #4A90E2;
+    box-shadow: 0 0 5px rgba(74,144,226,0.3);
+}
+
+.sort-container select:hover {
+    border-color: #999;
+}
+
+
+.admin-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+    background: linear-gradient(to right, #2c3e50, #3498db);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    max-width: 100%;
+  }
+  
+  .admin-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 3px;
+    background: linear-gradient(to right, #3498db, #2c3e50);
+    border-radius: 2px;
+  }
+  

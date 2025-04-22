@@ -5,6 +5,7 @@
     align-items: center;
     padding: 10px 20px;
     background-color: #333;
+    position: relative;
   }
   
   .title a {
@@ -94,7 +95,7 @@
 /* Button focus effect for accessibility */
 .btn-login:focus {
     outline: none; /* Remove default outline */
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* Add custom focus outline */
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5); /* Add custom focus outline */
 }
 
 /* Sidebar Styling */
@@ -152,4 +153,142 @@
   .main-content {
       margin-left: 0; /* Main content takes full width */
   }
+}
+
+.bell-icon{
+  font-size: 1.2px;
+}
+
+
+
+.notifications-box {
+  position: absolute;
+  top: -100px; /* Adjust this value to control the vertical position above the bell */
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  max-height: 300px; /* Adjust max height to fit the content */
+  overflow-y: auto; /* Allow scrolling if there are many notifications */
+  z-index: 1000; /* Ensure it's above other content */
+  display: none; /* Initially hidden */
+}
+
+.nav-item {
+  position: relative;
+}
+
+.nav-item .notifications-box {
+  display: block; /* Show the box when clicked */
+}
+
+.nav-item:hover .notifications-box {
+  display: block; /* Show on hover (optional) */
+}
+
+
+.notifications-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 1000;
+}
+
+.notifications-popup {
+  width: 300px;
+  max-height: 400px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.notifications-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eee;
+}
+
+.notifications-header h4 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+.notifications-content {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.no-notifications {
+  padding: 12px;
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+}
+
+.notification-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notification-item {
+  padding: 10px 12px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item.unread {
+  background-color: #f0f8ff;
+}
+
+.notification-message {
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.notification-timestamp {
+  display: block;
+  font-size: 12px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.mark-read-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 3px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background-color 0.2s ease;
+}
+
+.mark-read-btn:hover {
+  background-color: #0056b3;
 }
