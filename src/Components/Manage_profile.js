@@ -1,28 +1,47 @@
-import React, { useState, useEffect, useRef } from "react";
-import Sidebar1 from "./Sidebar1";
-import Loan from "./Loan";
-import Loan_repay from "./Loan_repay";
-import Loan_list from "./Loan_list";
-import Investment_list from "./Investment_list";
+import React from "react";
+import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+import Profile_sidebar from "./Profile_sidebar";
+import Profile_ui from "./Profile_ui";
+import Edit_profile from "./Edit_profile";
+import Change_password from "./Change_password";
+import Transaction from "./Transactions";
 import './ui_loan.css';
 
-function Loan_ui() {
-    const [activeComponent, setActiveComponent] = useState("Loan");
+function Navbar() {
+    return (
+        <nav className="navbar">
+                <div className="title">
+                    <Link to="/">DIGITAL MINILOAN</Link>
+                </div>
+                <ul className="nav-items">
+                    <div className="login-button">
+                        <ul className="nav-items">
+                            <li className="nav-item"><Link to="/index">Home</Link></li>
+                        </ul>
+                    </div>
+                </ul>
+            </nav>
+    );
+}
+
+function Manage_profile() {
+    const [activeComponent, setActiveComponent] = useState("Home");
     const sidebarRef = useRef(null);
     const loanContainerRef = useRef(null);
 
     const renderComponent = () => {
         switch (activeComponent) {
-            case "Loan":
-                return <Loan />;
-            case "LoanRepay": 
-                return <Loan_repay />;
-            case "LoanList": 
-                return <Loan_list />;
-            case "InvestmentList": 
-                return <Investment_list />;
+            case "Home":
+                return <Profile_ui />;
+            case "Edit":
+                return <Edit_profile />;
+            case "Change_pass":
+                return <Change_password />;
+            case "Transaction":
+                return <Transaction />;
             default:
-                return <Loan />;
+                return <Profile_ui/>;
         }
     };
 
@@ -50,6 +69,7 @@ function Loan_ui() {
 
     return (
         <div className="container-fluid p-0">
+            <Navbar />
             <div className="row vh-100 m-0" style={{width: '100vw'}}>
                 <ul style={{listStyleType: 'none', display: 'flex', margin: '0', padding: '0', width: '100%'}}>
                     <li className="col-auto" style={{
@@ -59,7 +79,7 @@ function Loan_ui() {
                         zIndex: '1000',
                         overflowY: 'hidden'
                     }} ref={sidebarRef}>
-                        <Sidebar1 setActiveComponent={setActiveComponent} />
+                        <Profile_sidebar setActiveComponent={setActiveComponent} />
                     </li>
                     <li className="col" ref={loanContainerRef}>
                         <div className="loan-container">
@@ -72,4 +92,4 @@ function Loan_ui() {
     );
 }
 
-export default Loan_ui;
+export default Manage_profile;

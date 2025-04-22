@@ -1,0 +1,220 @@
+import axios from "axios";
+import React from "react";
+import { Button,Modal,Spinner } from 'react-bootstrap';
+import { toast } from "react-toastify";
+
+
+class Loan_list extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            user_id:null,
+            loans:[],
+            showRepayment:false,
+            req_id:null,
+            iname:"",
+            amt:null,
+            total:null,
+            intrest:null,
+            approved_date:"",
+            status:"",
+            isModalOpen:false,
+            balance:"",
+            inv_id:null,
+            loading:false
+        }
+    }
+
+    componentDidMount(){
+        const uid=localStorage.getItem('user_id');
+        this.setState({user_id:uid},()=>{
+            this.fetchLoans();
+        });
+    }
+
+    fetchLoans=()=>{
+        var data={
+            uid:this.state.user_id
+        }
+        axios.post("http://localhost/digital_miniloan_backend/loan_list.php",data).then(response=>{
+            this.setState({loans:response.data});
+        });
+    }
+
+    inputSet = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    };    
+
+    repayment=(req_id,iname,amt,total,intrest,approved_date,status,inv_id)=>{
+        this.setState({
+            showRepayment:true,
+            req_id:req_id,
+            iname:iname,
+            amt:amt,
+            total:total,
+            intrest:intrest,
+            approved_date:approved_date,
+            status:status,
+            pamt:"",
+            inv_id:inv_id
+        });
+    }
+
+    pay_money=()=>{
+        this.setState({
+          isModalOpen:true
+        },()=>{
+          console.log(this.state.isModalOpen);
+        });
+      }
+
+    handleCloseModal=()=>{
+        this.setState({
+          isModalOpen:false
+        });
+    }
+
+    fetchBalance=(user_id)=>{
+        var data={
+            action:"balance",
+            uid:user_id
+        }
+        axios.post("http://localhost/digital_miniloan_backend/balance.php",data).then(response=>{
+            const balance=response.data.balance;
+            this.setState({balance:balance});
+        })
+      }    
+    
+    custom_pay=()=>{
+        const amount=parseInt(this.state.total);
+        const repay_amount=parseInt(this.state.pamt);
+        const balance=parseInt(this.state.balance);
+    
+        if(repay_amount>amount){
+          toast.error("Maximum Amount to repay is "+amount);
+        }else if(this.state.pamt==""){
+          toast.error("enter amount to repay");
+        }else if(repay_amount>balance){
+          toast.error("Insufficient Balance");
+        }else if(window.confirm("Continue to Pay ₹"+repay_amount)){
+          this.setState({loading:true});
+          var data={
+            uid:this.state.user_id,
+            inv_id:this.state.inv_id,
+            amount:this.state.total,
+            loan_id:this.state.req_id,
+            repay:repay_amount
+          }
+          axios.post("http://localhost/digital_miniloan_backend/repay.php",data).then(response=>{
+            if(response.data.status=="success"){
+              toast.success("successful transaction");
+              this.setState({isModalOpen:false})
+            }else{
+              toast.error("transaction failed");
+            }
+          }).finally(()=>{
+            this.setState({loading:false});
+          })
+        }else{
+          return;
+        }
+      }    
+
+    render(){
+        const {loans,loading}=this.state;
+        return(
+            <div>
+                {loading && (
+                            <div className="loading-overlay">
+                            <h1>Loading</h1><br/>
+                            <Spinner animation="border" role="status" variant="primary">
+                            <span className="sr-only"></span>
+                            </Spinner>
+                        </div>
+                        )}
+                {!this.state.showRepayment ? (
+                    //listdisplaye
+                    <div className="list_parent">
+                    <h1>Loan Lists</h1>
+                <table className="loan-table">
+                    <thead>
+                        <tr>
+                            <th>Loan ID</th>
+                            <th>Investor Name</th>
+                            <th>Amount</th>
+                            <th>Intrest Rate</th>
+                            <th>Total Amount</th>
+                            <th>Repaid Amount</th>
+                            <th>Date</th>
+                            <th>Approved Date</th>
+                            <th>Due Date</th>
+                            <th>Phone Number</th>
+                            <th>Status</th>
+                            <th>Repay</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        {loans.map((loan)=>(
+                            <tr>
+                                <td>{loan.req_id}</td>
+                                <td>{loan.username}</td>
+                                <td>{loan.Amount}</td>                                
+                                <td>{loan.intrest_rate}</td>
+                                <td>{loan.total_amount}</td>
+                                <td>{loan.repaid_amount}</td>
+                                <td>{loan.date}</td>
+                                <td>{loan.approved_date}</td>
+                                <td>{loan.due_date}</td>
+                                <td>{loan.phone_number}</td>
+                                <td>{loan.Status}</td>
+                                <td>
+                                <button style={{margin:'10px'}} onClick={()=>this.repayment(loan.req_id,loan.username,loan.Amount,loan.total_amount,loan.intrest_rate,loan.approved_date,loan.Status,loan.investor_id)}>Repay</button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                </div>
+                ):(
+           //Repayment details section
+          <div className="p-2" style={{ maxWidth: '600px', margin: '0 auto', border: '1px solid #ddd', borderRadius: '10px', backgroundColor: '#f8f9fa' }}>
+          <h4 className="mb-4" style={{ textAlign: 'center', color: '#333', fontSize: '24px !important',textTransform:'uppercase' }}>Loan Details</h4>
+          <div className="lr-font">
+          <h6><strong style={{textTransform:"uppercase"}}>Loan ID:</strong> {this.state.req_id}</h6>
+          <h6 style={{textTransform:"uppercase"}}><strong>Investor Name:</strong> {this.state.iname}</h6>
+          <h6><strong style={{textTransform:"uppercase"}}>Amount:</strong> {this.state.amt}</h6>
+          <h6><strong style={{textTransform:"uppercase"}}>Total Amount:</strong> {this.state.total}</h6>
+          <h6><strong style={{textTransform:"uppercase"}}>Interest Rate:</strong> {this.state.intrest}%</h6>
+          <h6><strong style={{textTransform:"uppercase"}}>Approved Date:</strong> {this.state.approved_date}</h6>
+          <h6><strong style={{textTransform:"uppercase"}}>Current Status:</strong> {this.state.status}</h6>
+          </div>
+
+          {<div className="d-flex justify-content-between mt-4">
+          <Button variant="success" className="btn-lg" type="button" onClick={this.pay_money} disabled={this.state.ldate===""}>
+          Pay
+          </Button>
+          <Button variant="secondary" className="btn-lg" type="button" onClick={() => this.setState({ showRepayment: false })}>
+          Back
+          </Button>
+          </div>}
+        </div>
+        )}
+        
+        <Modal show={this.state.isModalOpen} onHide={this.handleCloseModal} centered backdrop="true" keyboard={true} dialogClassName="custom-modal">
+          <Modal.Header closeButton>
+            <Modal.Title>Payment Details</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="custom-amount">
+              <label>Enter the amount you to have: </label><br/>
+              <input type="text" name="pamt" onChange={this.inputSet}/><br/><br/>
+              <button onClick={this.custom_pay} className={this.state.approved_date===""?"restrict_click":""}>Pay Now</button>
+            </div>
+          </Modal.Body>
+        </Modal>                            
+        </div>
+        )
+    }
+}
+
+export default Loan_list;

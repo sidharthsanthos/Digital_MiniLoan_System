@@ -1,0 +1,173 @@
+.admin-dashboard {
+  position: relative;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.admin-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #2c3e50;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  background: linear-gradient(to right, #2c3e50, #3498db);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  max-width: 100%;
+}
+
+.admin-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 3px;
+  background: linear-gradient(to right, #3498db, #2c3e50);
+  border-radius: 2px;
+}
+
+/* Modified to create horizontal layout */
+.admin-dashboard ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  gap: 20px;
+  align-items: stretch; /* This ensures child items stretch to same height */
+}
+
+.admin-dashboard li {
+  flex: 1;
+  max-width: 50%;
+  display: flex; /* Make the list item a flex container */
+}
+
+.status-container,
+.system-settings-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  border: 2px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-grow: 1; /* Allow containers to grow and fill available space */
+}
+
+.dashboard-description {
+  margin-bottom: 15px;
+  color: #666;
+  max-width: 600px;
+  line-height: 1.6;
+  padding-left: 10px;
+}
+
+.status-boxes {
+  display: flex;
+  gap: 15px;
+  width: calc(100% - 20px);
+  padding: 0 10px;
+}
+
+.status-box {
+  flex: 1;
+  width: 160px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 10px;
+}
+
+.status-box h2 {
+  margin: 0;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.status-box .count {
+  font-size: 32px;
+  font-weight: bold;
+  padding: 15px 0;
+}
+
+.status-box.pending {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}
+
+.status-box.approved {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.status-box.repaid {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+
+
+.system-settings-title {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #e0e0e0;
+  color: #333;
+}
+
+.system-settings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.system-settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.system-settings-item span {
+  color: #666;
+  font-size: 14px;
+  margin-right: 15px;
+}
+
+.system-settings-item h3 {
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.system-settings-description {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  font-style: italic;
+  border-top: 1px solid #e0e0e0;
+  padding-top: 10px;
+}
